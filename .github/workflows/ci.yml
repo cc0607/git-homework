@@ -1,0 +1,22 @@
+name: PR Python Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Python file
+        run: |
+          if [ -f "fail.py" ]; then
+            python3 fail.py
+          elif [ -f "hello.py" ]; then
+            python3 hello.py
+          else
+            echo "No script found"
